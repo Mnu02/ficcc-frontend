@@ -73,14 +73,25 @@ After making code changes, your app will hot-reload automatically. If it doesn't
 
 ```
 ficcc-frontend/
-├── App.tsx              # Main app entry point
-├── Home.tsx             # Home screen component
-├── package.json         # Project dependencies
-├── app.json             # Expo configuration
-├── babel.config.js      # Babel configuration
-├── metro.config.js      # Metro bundler configuration
-├── tsconfig.json        # TypeScript configuration
-└── README.md            # This file
+├── src/
+│   ├── App.tsx                    # Main app entry point
+│   ├── screens/
+│   │   └── HomeScreen.tsx         # Home screen component
+│   ├── components/                # Reusable components
+│   │   └── .gitkeep
+│   ├── assets/                    # Images, icons, fonts
+│   │   └── .gitkeep
+│   ├── utils/                     # Helper functions
+│   │   └── .gitkeep
+│   └── types/                     # TypeScript interfaces
+│       └── .gitkeep
+├── App.tsx                        # Root entry point (imports from src/App.tsx)
+├── app.json                       # Expo configuration
+├── babel.config.js                # Babel configuration
+├── metro.config.js                # Metro bundler configuration
+├── tsconfig.json                  # TypeScript configuration
+├── package.json                   # Project dependencies
+└── README.md                      # This file
 ```
 
 ## Development Workflow
@@ -93,7 +104,7 @@ ficcc-frontend/
 
 ### Adding New Screens/Components
 
-Create a new file, for example `screens/ProfileScreen.tsx`:
+Create a new file, for example `src/screens/ProfileScreen.tsx`:
 
 ```typescript
 import React from 'react';
@@ -121,10 +132,45 @@ const styles = StyleSheet.create({
 export default ProfileScreen;
 ```
 
-Import it in `App.tsx`:
+Import it in `src/App.tsx`:
 
 ```typescript
 import ProfileScreen from './screens/ProfileScreen';
+```
+
+Or create reusable components in `src/components/Button.tsx`:
+
+```typescript
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+
+interface ButtonProps {
+  label: string;
+  onPress: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ label, onPress }) => {
+  return (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.text}>{label}</Text>
+    </TouchableOpacity>
+  );
+};
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#007AFF',
+    padding: 10,
+    borderRadius: 5,
+  },
+  text: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+});
+
+export default Button;
 ```
 
 ### Installing New Packages
