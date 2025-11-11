@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+.expo/
+dist/
+npm-debug.*
+.env
+.env.local
+.env.*.local
+
+# testing
+coverage/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Expo
+.expo-shared/
+
+# React Native
+*.jsbundle
+*.bundle
+
+# Yarn
+yarn-error.log
