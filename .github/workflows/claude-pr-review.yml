@@ -1,0 +1,114 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+# Give the job the rights to post review comments
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      # Claude needs the code/diff in the workspace
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Claude review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Review the code changes in this React Native pull request for both Android and iOS.
+
+            Analyze the diff and provide a code review following these guidelines:
+
+            React Native Best Practices:
+            - Check for proper React hooks usage (useEffect, useState, useCallback, useMemo)
+            - Verify component re-render optimization to avoid performance issues
+            - Ensure proper memory management and cleanup (especially in useEffect)
+            - Check for correct navigation patterns and screen lifecycle handling
+
+            Cross-Platform Compatibility (Android & iOS):
+            - Identify any platform-specific code and verify it's handled correctly
+            - Check for Platform module usage where needed
+            - Verify styling consistency across both platforms (flexbox, spacing, etc.)
+            - Look for platform-specific bugs or compatibility issues
+            - Ensure proper handling of safe areas for notch/status bar
+            - Check touch handling and gesture differences between platforms
+
+            Native Modules & APIs:
+            - Verify proper usage of native modules and permissions
+            - Check for correct API calls and error handling
+            - Ensure platform-specific permissions are requested appropriately
+            - Look for deprecated APIs or breaking changes
+
+            Performance & Optimization:
+            - Identify unnecessary re-renders or inefficient state management
+            - Check for proper list rendering (FlatList/SectionList instead of ScrollView + map)
+            - Verify image optimization and lazy loading
+            - Look for memory leaks or unmanaged resources
+            - Check for excessive bundle size additions
+
+            Testing & Error Handling:
+            - Verify proper error handling and edge cases
+            - Check for test coverage for new functionality
+            - Look for unhandled promise rejections or async errors
+
+            Code Quality:
+            - Verify TypeScript types are correct (if using TypeScript)
+            - Check for proper logging without sensitive data
+            - Look for code duplication that could be extracted
+            - Ensure consistent code style and naming conventions
+
+            Format your response as a clear, actionable code review with sections for:
+            - Summary of changes
+            - Cross-platform compatibility issues (if any)
+            - Performance concerns (if any)
+            - Issues found (if any)
+            - Suggestions for improvement (if any)
+            - Overall assessment
+          show_full_output: false
+
+      - name: Post Claude Review as PR Comment
+        if: always()
+        timeout-minutes: 5
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const logFile = '/home/runner/work/_temp/claude-execution-output.json';
+
+            if (!fs.existsSync(logFile)) {
+              console.error('Log file not found');
+              return;
+            }
+
+            try {
+              const content = fs.readFileSync(logFile, 'utf8');
+              const output = JSON.parse(content);
+              let review = '';
+
+              if (Array.isArray(output)) {
+                const resultMessage = output.find(msg => msg.type === 'result' && msg.result);
+                review = resultMessage?.result || '';
+              }
+
+              if (review?.trim()) {
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '## 🤖 Claude Code Review (React Native)\n\n' + review
+                });
+              }
+            } catch (e) {
+              console.error(`Error posting review: ${e.message}`);
+            }
