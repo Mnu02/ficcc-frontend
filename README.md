@@ -287,7 +287,3 @@ If you encounter issues:
 2. Check your terminal for error messages
 3. Review the official Expo docs: https://docs.expo.dev/
 4. Ask your team members
-
----
-
-Happy coding! 🚀
