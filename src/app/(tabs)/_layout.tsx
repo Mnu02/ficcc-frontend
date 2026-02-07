@@ -9,14 +9,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "#ffffff" },
+        headerStyle: { backgroundColor: "#dfd1bbff" },
         headerTintColor: "#000000",
         headerShadowVisible: false,
         headerTitle: "",
         headerLeft: () => (
           <Image
             source={Logo}
-            style={{ height: 40, width: 40, marginLeft: 16 }}
+            style={{ height: 54, width: 40, marginLeft: 16 }}
             resizeMode="contain"
           />
         ),
