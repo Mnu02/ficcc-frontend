@@ -1,5 +1,8 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Image } from "react-native";
+
+const Logo = require("../../assets/logo.png");
 
 export default function TabLayout() {
   return (
@@ -9,6 +12,14 @@ export default function TabLayout() {
         headerStyle: { backgroundColor: "#ffffff" },
         headerTintColor: "#000000",
         headerShadowVisible: false,
+        headerTitle: "",
+        headerLeft: () => (
+          <Image
+            source={Logo}
+            style={{ height: 40, width: 40, marginLeft: 16 }}
+            resizeMode="contain"
+          />
+        ),
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#8E8E93",
       }}
