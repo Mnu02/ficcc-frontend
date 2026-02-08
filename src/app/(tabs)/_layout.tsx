@@ -21,7 +21,7 @@ export default function TabLayout() {
         headerLeft: () => (
           <Image
             source={Logo}
-            style={{ height: 40, width: 40, marginLeft: 16 }}
+            style={{ height: 54, width: 40, marginLeft: 16 }}
             resizeMode="contain"
           />
         ),
