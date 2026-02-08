@@ -7,6 +7,7 @@ export default function EventsScreen() {
     <View style={{ flex: 1 }}>
       <FlatList
         data={events}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <EventListItem event={item} />}
         contentContainerStyle={{ gap: 10, padding: 10 }}
       />
