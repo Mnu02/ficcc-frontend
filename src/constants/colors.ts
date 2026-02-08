@@ -1,8 +1,8 @@
 const Colors = {
   primary: "#007AFF",
-  background: "#ffffff",
+  background: "#dfd1bbff",
   card: "#ffffff",
-  text: "#1a1a1a",
+  text: "#000000",
   textSecondary: "#555555",
   textMuted: "#888888",
   tintActive: "#007AFF",
