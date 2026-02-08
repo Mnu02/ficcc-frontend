@@ -1,0 +1,1 @@
+export const defaultEventImage = require("@/assets/defaultEventImage.png");
