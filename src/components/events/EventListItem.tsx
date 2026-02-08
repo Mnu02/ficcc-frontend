@@ -67,7 +67,9 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '25%',
-        aspectRatio: 1
+        aspectRatio: 1,
+        borderRadius: 12,
+        marginLeft: 3
     },
     info: {
         padding: 12,
