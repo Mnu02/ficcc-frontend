@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "react-native";
+import Colors from "@/constants/colors";
 
 const Logo = require("../../assets/logo.png");
 
@@ -9,10 +10,14 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "#ffffff" },
-        headerTintColor: "#000000",
+        headerStyle: { backgroundColor: Colors.background },
+        headerTintColor: Colors.text,
         headerShadowVisible: false,
-        headerTitle: "",
+        headerTitleAlign: "center",
+        headerTitleStyle: {                                                                                                                         
+          fontSize: 18,                                                      
+          fontWeight: "600",                                                                                                                        
+        },
         headerLeft: () => (
           <Image
             source={Logo}
@@ -20,14 +25,15 @@ export default function TabLayout() {
             resizeMode="contain"
           />
         ),
-        tabBarActiveTintColor: "#007AFF",
-        tabBarInactiveTintColor: "#8E8E93",
+        tabBarActiveTintColor: Colors.tintActive,
+        tabBarInactiveTintColor: Colors.tintInactive,
       }}
     >
       <Tabs.Screen
         name="home/index"
         options={{
           title: "Home",
+          headerTitle: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
@@ -37,6 +43,7 @@ export default function TabLayout() {
         name="bible/index"
         options={{
           title: "Bible",
+          headerTitle: "Bible",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="book-outline" size={size} color={color} />
           ),
@@ -46,6 +53,7 @@ export default function TabLayout() {
         name="events/index"
         options={{
           title: "Events",
+          headerTitle: "Events",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="calendar-outline" size={size} color={color} />
           ),
@@ -55,6 +63,7 @@ export default function TabLayout() {
         name="media/index"
         options={{
           title: "Media",
+          headerTitle: "Media",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="play-circle-outline" size={size} color={color} />
           ),
@@ -64,6 +73,7 @@ export default function TabLayout() {
         name="info/info"
         options={{
           title: "Info",
+          headerTitle: "Info",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="information-circle-outline" size={size} color={color} />
           ),
