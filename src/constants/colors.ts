@@ -8,6 +8,7 @@ const Colors = {
   tintActive: "#007AFF",
   tintInactive: "#8E8E93",
   border: "#e0e0e0",
+  eventButton: '#726E6E'
 };
 
 export default Colors;
