@@ -2,8 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, ImageSourcePropType } from "r
 import { Event } from '@/types'
 import { Link } from 'expo-router'
 import Colors from '@/constants/colors'
-
-const defaultEventImage = require("@/assets/defaultEventImage.png");
+import { defaultEventImage } from "@/constants/images";
 
 function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -37,7 +36,7 @@ const EventListItem = ({ event } : EventListProps) => {
         : formatTime(event.starts_at);
 
     return (
-        <Link href={`/events/${event.id}`} asChild>
+        <Link href={`/event/${event.id}`} asChild>
             <Pressable style={styles.container}>
                 <Image
                     source={imageSource}
