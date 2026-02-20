@@ -26,55 +26,24 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            Review the code changes in this React Native pull request for both Android and iOS.
+            Review the code changes in this React Native pull request for Android and iOS compatibility.
+                                                                                                                                                          
+            Check for:                                                                                                                                     
+            - Hooks & lifecycle — correct useEffect cleanup, no missing dependencies, no unnecessary re-renders
+            - Cross-platform — Platform usage where needed, safe area handling, gesture/touch differences, styling consistency
+            - Native APIs & permissions — proper usage, error handling, no deprecated APIs, permissions requested correctly
+            - Performance — FlatList over ScrollView+map for lists, no memory leaks, no excessive re-renders
+            - Error handling — unhandled promise rejections, async errors, edge cases covered
+            - TypeScript — types are correct and non-trivial any usage is flagged
+            - Code quality — no duplication, consistent naming, no sensitive data in logs
+            - Bugs
 
-            Analyze the diff and provide a code review following these guidelines:
-
-            React Native Best Practices:
-            - Check for proper React hooks usage (useEffect, useState, useCallback, useMemo)
-            - Verify component re-render optimization to avoid performance issues
-            - Ensure proper memory management and cleanup (especially in useEffect)
-            - Check for correct navigation patterns and screen lifecycle handling
-
-            Cross-Platform Compatibility (Android & iOS):
-            - Identify any platform-specific code and verify it's handled correctly
-            - Check for Platform module usage where needed
-            - Verify styling consistency across both platforms (flexbox, spacing, etc.)
-            - Look for platform-specific bugs or compatibility issues
-            - Ensure proper handling of safe areas for notch/status bar
-            - Check touch handling and gesture differences between platforms
-
-            Native Modules & APIs:
-            - Verify proper usage of native modules and permissions
-            - Check for correct API calls and error handling
-            - Ensure platform-specific permissions are requested appropriately
-            - Look for deprecated APIs or breaking changes
-
-            Performance & Optimization:
-            - Identify unnecessary re-renders or inefficient state management
-            - Check for proper list rendering (FlatList/SectionList instead of ScrollView + map)
-            - Verify image optimization and lazy loading
-            - Look for memory leaks or unmanaged resources
-            - Check for excessive bundle size additions
-
-            Testing & Error Handling:
-            - Verify proper error handling and edge cases
-            - Check for test coverage for new functionality
-            - Look for unhandled promise rejections or async errors
-
-            Code Quality:
-            - Verify TypeScript types are correct (if using TypeScript)
-            - Check for proper logging without sensitive data
-            - Look for code duplication that could be extracted
-            - Ensure consistent code style and naming conventions
-
-            Format your response as a clear, actionable code review with sections for:
+            Response format:
+            - Review effort (Low / Medium / High) with a one-line reason
             - Summary of changes
-            - Cross-platform compatibility issues (if any)
-            - Performance concerns (if any)
-            - Issues found (if any)
-            - Suggestions for improvement (if any)
-            - Overall assessment
+            - Issues (blocking) — cross-platform bugs, crashes, broken APIs
+            - Suggestions (non-blocking) — performance, style, structure
+            - Overall assessment — approve / approve with suggestions / request changes
           show_full_output: false
 
       - name: Post Claude Review as PR Comment
