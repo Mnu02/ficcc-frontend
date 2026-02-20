@@ -4,9 +4,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
 
-# Give the job the rights to post review comments
 permissions:
-  id-token: write
   contents: read
   pull-requests: write
 
@@ -15,20 +13,22 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      # Claude needs the code/diff in the workspace
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Claude review
+        id: claude-review
+        timeout-minutes: 10
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          show_full_output: true
           prompt: |
             Review the code changes in this React Native pull request for Android and iOS compatibility.
-                                                                                                                                                          
-            Check for:                                                                                                                                     
+
+            Check for:
             - Hooks & lifecycle — correct useEffect cleanup, no missing dependencies, no unnecessary re-renders
             - Cross-platform — Platform usage where needed, safe area handling, gesture/touch differences, styling consistency
             - Native APIs & permissions — proper usage, error handling, no deprecated APIs, permissions requested correctly
@@ -44,40 +44,18 @@ jobs:
             - Issues (blocking) — cross-platform bugs, crashes, broken APIs
             - Suggestions (non-blocking) — performance, style, structure
             - Overall assessment — approve / approve with suggestions / request changes
-          show_full_output: false
 
       - name: Post Claude Review as PR Comment
-        if: always()
-        timeout-minutes: 5
+        if: always() && steps.claude-review.outputs.output != ''
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
-            const logFile = '/home/runner/work/_temp/claude-execution-output.json';
-
-            if (!fs.existsSync(logFile)) {
-              console.error('Log file not found');
-              return;
-            }
-
-            try {
-              const content = fs.readFileSync(logFile, 'utf8');
-              const output = JSON.parse(content);
-              let review = '';
-
-              if (Array.isArray(output)) {
-                const resultMessage = output.find(msg => msg.type === 'result' && msg.result);
-                review = resultMessage?.result || '';
-              }
-
-              if (review?.trim()) {
-                await github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: '## 🤖 Claude Code Review (React Native)\n\n' + review
-                });
-              }
-            } catch (e) {
-              console.error(`Error posting review: ${e.message}`);
+            const review = `${{ steps.claude-review.outputs.output }}`;
+            if (review.trim()) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '## Claude Code Review (React Native)\n\n' + review
+              });
             }
