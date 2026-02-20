@@ -33,7 +33,7 @@ export const events: Event[] = [
     name: "Sunday Worship Service",
     location: "3 Charles St, Ithaca, NY, 14850",
     image_url: "https://picsum.photos/seed/worship/800/400",
-    starts_at: "2026-02-08T09:00:00Z",
+    starts_at: "2026-05-08T09:00:00Z",
     ends_at: "2026-02-08T11:30:00Z",
     description: 
       "As typefaces have evolved to suit the web, designers have many usability factors to consider beyond the way fonts can make people feel. When choosing web fonts, qualities like weight variability, how many languages a font comes in, and load time and availability across devices all matter. To choose the best fonts for your website designs, find Framer's best practices, as well as a roundup of the best web fonts, below."
@@ -43,7 +43,7 @@ export const events: Event[] = [
     name: "Bible Study Fellowship",
     location: "RPCC, 107 Jessup Rd, Ithaca, NY",
     image_url: null,
-    starts_at: "2026-02-11T18:30:00Z",
+    starts_at: "2026-07-11T18:30:00Z",
     ends_at: "2026-02-11T20:00:00Z",
     description:
       "Join us for an evening of in-depth Scripture study and fellowship. We explore God's Word together in a welcoming, discussion-based setting. All are welcome—whether you're new to the Bible or have been studying for years. Bring your questions and an open heart.",
