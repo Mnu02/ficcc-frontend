@@ -1,24 +1,46 @@
+import { announcements } from "@/data";
 import React, { memo } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import type { ImageSourcePropType } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 
 type HomeCardProps = {
   title: string;
   subtitle: string;
+  image?: ImageSourcePropType;
+};
+
+const IMAGES = {
+  discipleship: require("src/assets/discipleship.png"),
+  give: require("src/assets/Give.png"),
+  sermon: require("src/assets/sermons.png"),
+  leaders: require("src/assets/leaders.png"),
+  newsletter: require("src/assets/newsletters.png"),
+  announcements: require("src/assets/Announcements.png"),
 };
 
 const SECTIONS = [
-  { title: "Upcoming Sermon", subtitle: "Coming soon" },
-  { title: "Discipleship Group", subtitle: "Sundays at 11:30am" },
-  { title: "Give to FICCC", subtitle: "Coming soon" },
-  { title: "Weekly Newsletter", subtitle: "Coming soon" },
-  { title: "Church Leaders", subtitle: "Coming soon" },
-  { title: "Announcements", subtitle: "Coming soon" },
+  { title: "Upcoming Sermon", subtitle: "Coming soon", image: IMAGES.sermon },
+  { title: "Discipleship Group", subtitle: "Sundays at 11:30am", image: IMAGES.discipleship },
+  { title: "Give to FICCC", subtitle: "Coming soon", image: IMAGES.give },
+  { title: "Weekly Newsletter", subtitle: "Coming soon", image: IMAGES.newsletter },
+  { title: "Church Leaders", subtitle: "Coming soon",image: IMAGES.leaders },
+  { title: "Announcements", subtitle: "Coming soon", image: IMAGES.announcements },
 ];
 
-const HomeCard = memo(function HomeCard({ title, subtitle }: HomeCardProps) {
+const HomeCard = memo(function HomeCard({ title, subtitle, image }: HomeCardProps) {
   return (
     <View style={styles.card}>
-      <View style={styles.cardImagePlaceholder} />
+      <View style={styles.imageFrame}>
+        {image ? (
+          <>
+            <Image source={image} style={styles.backgroundImage} blurRadius={20} />
+            <Image source={image} style={styles.cardImage} resizeMode="contain" />
+          </>
+        ) : (
+          <View style={styles.cardImagePlaceholder} />
+        )}
+      </View>
+
       <Text style={styles.cardTitle}>{title}</Text>
       <Text style={styles.cardSubtitle}>{subtitle}</Text>
     </View>
@@ -51,6 +73,7 @@ export default function HomeScreen() {
               key={item.title}
               title={item.title}
               subtitle={item.subtitle}
+              image={item.image}
             />
           ))}
         </View>
@@ -77,13 +100,34 @@ const styles = StyleSheet.create({
   mainTabText: { fontSize: 18, fontWeight: "600", color: "saddlebrown" },
 
   grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    rowGap: 30,
-  },
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "space-between",
+},
 
-  card: { width: "48%" },
+imageFrame: {
+  height: 200,
+  width: "100%",
+  borderRadius: 12,
+  borderColor: "tan",
+  borderWidth: 2,
+  overflow: "hidden",
+  position: "relative",
+},
+
+cardImage: {
+  height: "100%",
+  width: "100%",
+},
+
+backgroundImage: {
+  ...StyleSheet.absoluteFillObject,
+  resizeMode: "cover",
+},
+card: {
+  flexBasis: "48%",
+  marginBottom: 30,
+},
   cardImagePlaceholder: {
     height: 200,
     borderRadius: 12,
