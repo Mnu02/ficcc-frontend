@@ -45,3 +45,39 @@ export interface Sermon {
   sermon_series: string | null;
   youtube_link: string;
 }
+
+export interface BibleVersion {
+  id: string;
+  abbreviation: string;
+  name: string;
+  description: string | null;
+}
+
+export interface BibleBook {
+  id: string;
+  bibleId: string;
+  abbreviation: string;
+  name: string;
+  nameLong: string;
+}
+
+export interface BibleChapter {
+  id: string;
+  bibleId: string;
+  bookId: string;
+  number: string;
+  reference: string;
+}
+
+// BibleVerse is really a chapter with its content — that's how api.bible structures it. 
+// The content field is the HTML we'll parse on the frontend to extract individual verses.
+export interface BibleVerse {
+  id: string;           // "GEN.1"
+  bookId: string;       // "GEN"
+  number: string;       // "1"
+  reference: string;    // "Genesis 1"
+  verseCount: number;   // 31
+  content: string;      // raw HTML from api.bible
+  next: { id: string; number: string; bookId: string } | null;
+  previous: { id: string; number: string; bookId: string } | null;
+}
