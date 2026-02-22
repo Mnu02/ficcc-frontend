@@ -10,29 +10,30 @@ type Props = {
 
 export default function SectionModal({ visible, title, onClose, children }: Props) {
   return (
-    <Modal
-  visible={visible}
-  transparent
-  animationType="fade"
-  onRequestClose={onClose}
->
-  <Pressable style={styles.backdrop} onPress={onClose}>
-    <Pressable style={styles.modalCard} onPress={() => {}}>
+   <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+  <View style={styles.backdrop}>
+    <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+
+    <View style={styles.modalCard}>
       <Text style={styles.modalTitle}>{title}</Text>
 
-    <ScrollView style={{ maxHeight: 400 }} contentContainerStyle={{ paddingBottom: 16 }}>
+      <ScrollView
+        style={styles.scrollArea}
+        contentContainerStyle={{ paddingBottom: 16 }}
+        showsVerticalScrollIndicator
+      >
         {typeof children === "string" ? (
-            <Text style={{ fontSize: 16, lineHeight: 22, opacity: 0.85 }}>{children}</Text>
+          <Text style={styles.modalText}>{children}</Text>
         ) : (
-            children
+          children
         )}
-    </ScrollView>
+      </ScrollView>
 
       <Pressable style={styles.closeBtn} onPress={onClose}>
         <Text style={styles.closeText}>Close</Text>
       </Pressable>
-    </Pressable>
-  </Pressable>
+    </View>
+  </View>
 </Modal>
   );
 }
@@ -48,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 16,
     padding: 18,
+    maxHeight: "80%",
   },
   modalTitle: {
     fontSize: 20,
@@ -64,6 +66,16 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
   },
+  scrollArea: {
+  maxHeight: 400,
+  marginTop: 8,
+},
+
+modalText: {
+  fontSize: 16,
+  lineHeight: 22,
+  opacity: 0.85,
+},
   closeText: {
     fontWeight: "600",
   },

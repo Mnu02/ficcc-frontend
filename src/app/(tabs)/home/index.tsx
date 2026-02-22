@@ -2,7 +2,7 @@ import { announcements } from "@/data";
 import React, { memo,  useState } from "react";
 import type { ImageSourcePropType } from "react-native";
 import { View, Text, ScrollView, StyleSheet, Image, Pressable } from "react-native";
-import SectionModal from "./modal";
+import SectionModal from "../../../components/home/modal";
 
 type HomeCardProps = {
   title: string;
@@ -122,14 +122,14 @@ const styles = StyleSheet.create({
   scroll: { flex: 1 },
   scrollContent: { padding: 14, paddingBottom: 40 },
 
-  header: { fontSize: 28, fontWeight: "700", marginBottom: 7 },
+  header: { fontSize: 28, fontWeight: "700", marginBottom: 9 },
 
   mainTab: {
     padding: 60,
     borderColor: "tan",
     borderRadius: 12,
     borderWidth: 2,
-    marginBottom: 60,
+    marginBottom: 30,
   },
   mainTabText: { fontSize: 18, fontWeight: "600", color: "saddlebrown" },
 
@@ -144,7 +144,7 @@ imageFrame: {
   width: "100%",
   borderRadius: 12,
   borderColor: "tan",
-  borderWidth: 2,
+  borderWidth: 1,
   overflow: "hidden",
   position: "relative",
 },
@@ -170,9 +170,9 @@ card: {
   },
   cardTitle: {
     marginTop: 10,
-    textAlign: "center",
+    textAlign: "left",
     fontSize: 18,
     fontWeight: "600",
   },
-  cardSubtitle: { textAlign: "center", marginTop: 6, opacity: 0.8 },
+  cardSubtitle: { textAlign: "left", marginTop: 6, opacity: 0.8 },
 });
