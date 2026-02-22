@@ -1,12 +1,22 @@
 import { announcements } from "@/data";
-import React, { memo } from "react";
+import React, { memo,  useState } from "react";
 import type { ImageSourcePropType } from "react-native";
-import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Image, Pressable } from "react-native";
+import SectionModal from "./modal";
 
 type HomeCardProps = {
   title: string;
   subtitle: string;
   image?: ImageSourcePropType;
+  onPress?: () => void;
+};
+
+type Section = {
+  title: string;
+  subtitle: string;
+  image?: ImageSourcePropType;
+  modalTitle?: string;
+  modalContent?: React.ReactNode;
 };
 
 const IMAGES = {
@@ -19,17 +29,31 @@ const IMAGES = {
 };
 
 const SECTIONS = [
-  { title: "Upcoming Sermon", subtitle: "Coming soon", image: IMAGES.sermon },
-  { title: "Discipleship Group", subtitle: "Sundays at 11:30am", image: IMAGES.discipleship },
-  { title: "Give to FICCC", subtitle: "Coming soon", image: IMAGES.give },
-  { title: "Weekly Newsletter", subtitle: "Coming soon", image: IMAGES.newsletter },
-  { title: "Church Leaders", subtitle: "Coming soon",image: IMAGES.leaders },
-  { title: "Announcements", subtitle: "Coming soon", image: IMAGES.announcements },
+  { title: "Upcoming Sermon", subtitle: "Coming soon", image: IMAGES.sermon, modalTitle: "Upcoming Sermon", modalContent: "Coming soon" },
+  { title: "Discipleship Group", subtitle: "Sundays at 11:30am", image: IMAGES.discipleship, modalTitle: "Discipleship Group", modalContent: "Coming soon" },
+  { title: "Give to FICCC", subtitle: "Coming soon", image: IMAGES.give, modalTitle: "Give to FICCC", modalContent: "Donations are accepted through PayPal using the link below. We encourage all Christians to give to their local church, but we do not require nor encourage non-Christians to donate to the church." },
+  { title: "Weekly Newsletter", subtitle: "Coming soon", image: IMAGES.newsletter, modalTitle: "Weekly Newsletter", modalContent: "Coming soon" },
+  { title: "Church Leaders", subtitle: "Coming soon",image: IMAGES.leaders, modalTitle: "Church Leaders",
+     modalContent: (
+      <>
+        <Text style={{ fontSize: 16, lineHeight: 22, marginBottom: 12 }}>
+          Zhida is, first and foremost, a servant (δοῦλος) of Christ. However, that wasn't always the case. He grew up in an immigrant church in Houston, Texas. But after his parents divorced at a young age, leaving him with a single mom, he felt there was simply too much suffering in the world for religion to be true. 
+          In his view, either God was real and didn't do anything about suffering, or God wasn't real at all. So he declared himself an atheist in high school and stopped going to church. All throughout college, he lived for his own pleasures - food, drinking, drugs, and League of Legends. But after graduating, God powerfully changed his heart through 3 key individuals. And he gave his life to Christ as a young adult. He continued working as a mechanical engineer for 6 years, before answering the call to serve God in full-time ministry. 
+        </Text>
+
+
+        <Text style={{ fontSize: 16, lineHeight: 22 }}>
+          Zhida is married to his better half, Ngun. They met as classmates at Dallas Theological Seminary. She also grew up in an immigrant church with the Chin people, a minority group in Burma. Amidst government persecution, her family moved to Indiana when she was in elementary school. Unlike Zhida, Ngun is not from Texas and actually likes cold weather! These days, they enjoy taking long walks, listening to good podcasts, eating spicy food, and hanging out with church family.
+        </Text>
+      </> )},
+  { title: "Announcements", subtitle: "Coming soon", image: IMAGES.announcements, modalTitle: "Announcements", modalContent: "Coming soon" },
 ];
 
-const HomeCard = memo(function HomeCard({ title, subtitle, image }: HomeCardProps) {
+
+
+const HomeCard = memo(function HomeCard({ title, subtitle, image, onPress }: HomeCardProps) {
   return (
-    <View style={styles.card}>
+    <Pressable style={styles.card} onPress={onPress}>
       <View style={styles.imageFrame}>
         {image ? (
           <>
@@ -43,11 +67,12 @@ const HomeCard = memo(function HomeCard({ title, subtitle, image }: HomeCardProp
 
       <Text style={styles.cardTitle}>{title}</Text>
       <Text style={styles.cardSubtitle}>{subtitle}</Text>
-    </View>
+    </Pressable>
   );
 });
 
 export default function HomeScreen() {
+  const [openSection, setOpenSection] = useState<Section | null>(null);
   return (
     <View style={styles.screen}>
       <ScrollView
@@ -74,11 +99,20 @@ export default function HomeScreen() {
               title={item.title}
               subtitle={item.subtitle}
               image={item.image}
+              onPress={() => setOpenSection(item)}
             />
           ))}
         </View>
       </ScrollView>
+     <SectionModal
+  visible={!!openSection}
+  title={openSection?.modalTitle ?? openSection?.title ?? ""}
+  onClose={() => setOpenSection(null)}
+>
+  {openSection?.modalContent}
+</SectionModal>
     </View>
+    
   );
 }
 
