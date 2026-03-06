@@ -355,8 +355,8 @@ export default function BibleScreen() {
             </TouchableOpacity>
           </View>
 
-          <FlatList
-            data={versions}
+          <FlatLis
+            data={versions
             keyExtractor={(v) => v.id}
             renderItem={({ item }) => (
               <TouchableOpacity
