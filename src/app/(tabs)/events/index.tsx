@@ -1,8 +1,27 @@
-import { View, FlatList } from "react-native";
-import { events } from '@/data'
-import EventListItem from '@/components/events/EventListItem'
+import { View, FlatList, ActivityIndicator, Text, StyleSheet } from "react-native";
+import EventListItem from "@/components/events/EventListItem";
+import Colors from "@/constants/colors";
+import { useEvents } from "@/hooks/useEvents";
 
 export default function EventsScreen() {
+  const { events, loading, error } = useEvents();
+
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.message}>{error}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -14,3 +33,16 @@ export default function EventsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
+  message: {
+    color: Colors.textSecondary,
+    textAlign: "center",
+  },
+});

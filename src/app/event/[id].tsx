@@ -1,27 +1,33 @@
-import { useLocalSearchParams, useRouter, Stack } from "expo-router"
+import { useLocalSearchParams, Stack } from "expo-router"
 import { View, Text, StyleSheet, Image, Share, Alert, ActivityIndicator, TouchableOpacity, Platform, ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { defaultEventImage } from "@/constants/images";
-import { events } from '@/data'
 import ShareButton from "@/components/events/ShareButton";
 import AddToCalendarButton from "@/components/events/AddToCalendarButton";
 import Colors from '@/constants/colors'
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import { useEffect, useState } from "react";
+import { useEvents } from "@/hooks/useEvents";
 
 
 
 const EventDetailsScreen = () => {
-    const router = useRouter();
     const { id } = useLocalSearchParams();
-    const event = events.find((e) => e.id === id);
+    const eventId = Array.isArray(id) ? id[0] : id;
+    const { events, loading, error } = useEvents();
+    const event = events.find((e) => e.id === eventId);
 
     const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null);
     const [geocoding, setGeocoding] = useState(true);
 
     useEffect(() => {
-        if (!event) return;
+        if (!event) {
+            setGeocoding(false);
+            return;
+        }
+
+        setGeocoding(true);
         Location.geocodeAsync(event.location).then((results) => {
             if (results.length > 0) {
                 setCoords({ latitude: results[0].latitude, longitude: results[0].longitude });
@@ -29,8 +35,28 @@ const EventDetailsScreen = () => {
         }).catch(() => {}).finally(() => setGeocoding(false));
     }, [event?.location]);
 
+    if (loading) {
+        return (
+            <View style={styles.centered}>
+                <ActivityIndicator size="large" color={Colors.primary} />
+            </View>
+        );
+    }
+
+    if (error) {
+        return (
+            <View style={styles.centered}>
+                <Text style={styles.errorText}>{error}</Text>
+            </View>
+        );
+    }
+
     if (!event) {
-        return <Text>Event not found</Text>
+        return (
+            <View style={styles.centered}>
+                <Text style={styles.errorText}>Event not found.</Text>
+            </View>
+        );
     }
 
     const formatDate = (dateStr: string) => {
@@ -145,6 +171,12 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
     },
+    centered: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 24,
+    },
     imageContainer: {
         width: '100%',
         aspectRatio: 16 / 9,
@@ -197,5 +229,9 @@ const styles = StyleSheet.create({
     directionsText: {
         color: Colors.primary,
         fontSize: 13,
+    },
+    errorText: {
+        color: Colors.textSecondary,
+        textAlign: "center",
     },
 })

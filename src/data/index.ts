@@ -1,4 +1,4 @@
-import { Announcement, Event, Leader, PrayerRequest, Sermon } from "../types";
+import { Announcement, Leader, PrayerRequest, Sermon } from "../types";
 
 export const announcements: Announcement[] = [
   {
@@ -24,49 +24,6 @@ export const announcements: Announcement[] = [
     body_html:
       "<p>Join us on <strong>February 20th</strong> at 6pm for a special dinner to honour our dedicated volunteers. RSVP by February 15th.</p>",
     image_url: "https://picsum.photos/seed/dinner/800/400",
-  },
-];
-
-export const events: Event[] = [
-  {
-    id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    name: "Sunday Worship Service",
-    location: "3 Charles St, Ithaca, NY, 14850",
-    image_url: "https://picsum.photos/seed/worship/800/400",
-    starts_at: "2026-05-08T09:00:00Z",
-    ends_at: "2026-02-08T11:30:00Z",
-    description: 
-      "As typefaces have evolved to suit the web, designers have many usability factors to consider beyond the way fonts can make people feel. When choosing web fonts, qualities like weight variability, how many languages a font comes in, and load time and availability across devices all matter. To choose the best fonts for your website designs, find Framer's best practices, as well as a roundup of the best web fonts, below."
-  },
-  {
-    id: "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-    name: "Bible Study Fellowship",
-    location: "RPCC, 107 Jessup Rd, Ithaca, NY",
-    image_url: null,
-    starts_at: "2026-07-11T18:30:00Z",
-    ends_at: "2026-02-11T20:00:00Z",
-    description:
-      "Join us for an evening of in-depth Scripture study and fellowship. We explore God's Word together in a welcoming, discussion-based setting. All are welcome—whether you're new to the Bible or have been studying for years. Bring your questions and an open heart.",
-  },
-  {
-    id: "c3d4e5f6-a7b8-9012-cdef-123456789012",
-    name: "300 Day Hall, Ithaca, NY",
-    location: "City Park",
-    image_url: "https://picsum.photos/seed/outreach/800/400",
-    starts_at: "2026-02-15T08:00:00Z",
-    ends_at: "2026-02-15T14:00:00Z",
-    description:
-      "A day of service and connection as we take our faith beyond the church walls. We'll share meals, run activities for children, and offer practical support to our neighbours at City Park. Come and be part of showing God's love in action. Volunteers and donations welcome.",
-  },
-  {
-    id: "d4e5f6a7-b8c9-0123-defa-234567890123",
-    name: "Golden Gate Bridge, CA",
-    location: "Main Sanctuary",
-    image_url: "https://picsum.photos/seed/easter/800/400",
-    starts_at: "2026-04-03T17:00:00Z",
-    ends_at: "2026-04-05T20:00:00Z",
-    description:
-      "A three-day conference celebrating the resurrection and renewing our faith. Gather for worship, teaching, and prayer as we prepare our hearts for Easter. Guest speakers and our own ministry team will lead sessions on hope, renewal, and living the resurrection life. All are welcome.",
   },
 ];
 
