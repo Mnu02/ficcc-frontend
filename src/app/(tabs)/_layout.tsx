@@ -40,16 +40,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="bible/index"
-        options={{
-          title: "Bible",
-          headerTitle: "Bible",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="events/index"
         options={{
           title: "Events",
