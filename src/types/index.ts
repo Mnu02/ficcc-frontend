@@ -45,3 +45,13 @@ export interface Sermon {
   sermon_series: string | null;
   youtube_link: string;
 }
+
+export interface Video {
+  id: string;
+  title: string;
+  description: string;
+  published_at: string;
+  thumbnail_url: string;
+  watch_url: string;
+  embed_url: string;
+}
