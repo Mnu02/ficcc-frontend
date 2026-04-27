@@ -393,7 +393,7 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: 'white',
   },
   content: {
     padding: 16,
