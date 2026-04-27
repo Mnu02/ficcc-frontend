@@ -28,6 +28,21 @@ export default function RootLayout() {
             },
           }}
         />
+        <Stack.Screen
+          name="video/[id]"
+          options={{
+            headerShown: true,
+            headerBackTitle: "",
+            headerStyle: { backgroundColor: Colors.background },
+            headerTintColor: Colors.text,
+            headerShadowVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              fontSize: 18,
+              fontWeight: "600",
+            },
+          }}
+        />
       </Stack>
     </SafeAreaProvider>
   );
