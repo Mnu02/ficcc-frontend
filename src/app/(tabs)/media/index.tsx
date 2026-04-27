@@ -94,7 +94,7 @@ export default function MediaScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: 'white',
   },
   centered: {
     flex: 1,
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: Colors.card,
     borderRadius: 12,
+    borderWidth: 0.3,
     overflow: "hidden",
   },
   thumbnailWrap: {
