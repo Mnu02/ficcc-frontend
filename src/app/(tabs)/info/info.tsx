@@ -145,7 +145,6 @@ export default function InfoScreen() {
     >
       <View style={styles.hero}>
         <Text style={styles.eyebrow}>{INFO_COPY.heroEyebrow}</Text>
-        <Text style={styles.heroTitle}>{INFO_COPY.heroTitle}</Text>
         <Text style={styles.heroText}>{INFO_COPY.heroText}</Text>
       </View>
 

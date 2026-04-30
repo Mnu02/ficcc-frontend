@@ -17,7 +17,6 @@ export const LAST_UPDATED = "April 23, 2026";
 
 export const INFO_COPY = {
   heroEyebrow: "FICCC",
-  heroTitle: "Info",
   heroText:
     "Find church contact details, common questions, and the app policies in one place.",
   contactTitle: "Contact Us",
