@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { StyleSheet, Text, View, Image, Pressable, ImageSourcePropType } from "react-native";
 import { Event } from '@/types'
 import { Link } from 'expo-router'
@@ -25,15 +26,16 @@ type EventListProps = {
     event: Event;
 }
 
-const EventListItem = ({ event } : EventListProps) => {
+const EventListItem = memo(({ event } : EventListProps) => {
     const imageSource: ImageSourcePropType = event.image_url
         ? { uri: event.image_url }
         : defaultEventImage;
 
     const dateLabel = formatDate(event.starts_at);
+    const startTimeLabel = formatTime(event.starts_at);
     const timeLabel = event.ends_at
-        ? `${formatTime(event.starts_at)} - ${formatTime(event.ends_at)}`
-        : formatTime(event.starts_at);
+        ? `${startTimeLabel} - ${formatTime(event.ends_at)}`
+        : startTimeLabel;
 
     return (
         <Link href={`/event/${event.id}`} asChild>
@@ -52,7 +54,9 @@ const EventListItem = ({ event } : EventListProps) => {
             </Pressable>
         </Link>
     );
-};
+});
+
+EventListItem.displayName = "EventListItem";
 
 export default EventListItem;
 
