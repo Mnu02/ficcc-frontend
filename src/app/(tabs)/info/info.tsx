@@ -252,17 +252,12 @@ const styles = StyleSheet.create({
     borderColor: "#caa77c",
   },
   eyebrow: {
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "700",
     letterSpacing: 1.2,
     textTransform: "uppercase",
     color: "#8b5e34",
     marginBottom: 6,
-  },
-  heroTitle: {
-    fontSize: 30,
-    fontWeight: "700",
-    color: Colors.text,
   },
   heroText: {
     marginTop: 8,
