@@ -20,12 +20,12 @@ type Section = {
 };
 
 const IMAGES = {
-  discipleship: require("src/assets/discipleship.png"),
-  give: require("src/assets/Give.png"),
-  sermon: require("src/assets/sermons.png"),
-  leaders: require("src/assets/leaders.png"),
-  newsletter: require("src/assets/newsletters.png"),
-  announcements: require("src/assets/Announcements.png"),
+  discipleship: require("../../../assets/discipleship.png"),
+  give: require("../../../assets/Give.png"),
+  sermon: require("../../../assets/sermons.png"),
+  leaders: require("../../../assets/leaders.png"),
+  newsletter: require("../../../assets/newsletters.png"),
+  announcements: require("../../../assets/Announcements.png"),
 };
 
 const SECTIONS = [
