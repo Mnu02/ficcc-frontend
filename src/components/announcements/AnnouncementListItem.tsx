@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   imageFrame: {
     width: "100%",
-    aspectRatio: 16 / 9,
+    aspectRatio: 25 / 9,
     backgroundColor: Colors.card,
   },
   backgroundImage: {
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   coverBand: {
-    height: 84,
+    width: "100%",
+    aspectRatio: 25 / 9,
     backgroundColor: Colors.accentSoft,
     alignItems: "center",
     justifyContent: "center",
