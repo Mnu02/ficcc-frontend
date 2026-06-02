@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Linking } from "react-native";
 import type { ImageSourcePropType } from "react-native";
+import DonateButtons from "@components/home/DonateButtons";
 
 // Matches the plain-string detail styling on the section page.
 const paragraph = { fontSize: 16, lineHeight: 23 } as const;
@@ -114,10 +115,18 @@ export const SECTIONS: Section[] = [
   {
     id: "give",
     title: "Give to FICCC",
-    subtitle: "Coming soon",
+    subtitle: "Support the ministry",
     image: IMAGES.give,
-    detail:
-      "Donations are accepted through PayPal using the link below. We encourage all Christians to give to their local church, but we do not require nor encourage non-Christians to donate to the church.",
+    detail: (
+      <>
+        <Text style={paragraph}>
+          We encourage all Christians to give to their local church, but we do
+          not require nor encourage non-Christians to donate. Choose a method
+          below to give:
+        </Text>
+        <DonateButtons />
+      </>
+    ),
   },
   {
     id: "leaders",
