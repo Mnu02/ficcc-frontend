@@ -143,11 +143,6 @@ export default function InfoScreen() {
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.hero}>
-        <Text style={styles.eyebrow}>{INFO_COPY.heroEyebrow}</Text>
-        <Text style={styles.heroText}>{INFO_COPY.heroText}</Text>
-      </View>
-
       <SectionCard
         title={INFO_COPY.contactTitle}
         subtitle={INFO_COPY.contactSubtitle}

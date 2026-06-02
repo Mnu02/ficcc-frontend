@@ -13,7 +13,7 @@ export type PolicyBlock = {
 export const CONTACT_EMAIL = "em.ficcc@gmail.com";
 export const CONTACT_WEBSITE = "https://em.ficcc.org/";
 export const CONTACT_ADDRESS = "429 Mitchell Street, Ithaca, NY 14850";
-export const LAST_UPDATED = "April 23, 2026";
+export const LAST_UPDATED = "June 2, 2026";
 
 export const INFO_COPY = {
   heroEyebrow: "FICCC",
@@ -69,51 +69,76 @@ export const TERMS_BLOCKS: PolicyBlock[] = [
   {
     title: "Agreement to Terms",
     paragraphs: [
-      "By accessing or using the FICCC app, you agree to these Terms of Service and to use the app in a lawful and respectful way.",
-      "If you do not agree with these terms, you should stop using the app.",
+      "These Terms of Service govern your use of the FICCC mobile app, published for the First Ithaca Chinese Christian Church (FICCC) community.",
+      "By downloading, accessing, or using the app, you agree to these terms and to use the app in a lawful and respectful way. If you do not agree, please stop using the app.",
     ],
   },
   {
-    title: "Description of Service",
+    title: "Who We Are",
     paragraphs: [
-      "The app provides church information, event listings, Bible reading tools, and links to church-related resources for the First Ithaca Chinese Christian Church community.",
-      "Some features may rely on church-managed APIs or third-party services such as maps, calendar apps, and website links.",
+      `The app is provided by First Ithaca Chinese Christian Church, located at ${CONTACT_ADDRESS}. You can reach us at ${CONTACT_EMAIL}.`,
+    ],
+  },
+  {
+    title: "What the App Does",
+    paragraphs: [
+      "The app is an informational tool for the church community. It displays church announcements, event listings, and ministry videos, and provides convenient shortcuts to church-related resources.",
+      "Content shown in the app is retrieved from church-operated servers and is provided for general information. The app does not require you to create an account or sign in.",
+    ],
+  },
+  {
+    title: "No Account Required",
+    paragraphs: [
+      "You can use the app without registering, creating a profile, or providing personal information. Because there is no account, there is nothing to log in to and no account for you to delete.",
     ],
   },
   {
     title: "Acceptable Use",
-    paragraphs: ["You agree not to misuse the app."],
+    paragraphs: ["You agree to use the app responsibly."],
     bullets: [
-      "Use the app only for lawful purposes.",
-      "Do not interfere with the app, its APIs, or connected services.",
-      "Do not attempt unauthorized access to systems or data.",
+      "Use the app only for lawful, personal, non-commercial purposes.",
+      "Do not interfere with, disrupt, or place an unreasonable load on the app or its connected services.",
+      "Do not attempt to gain unauthorized access to any systems, servers, or data.",
       "Do not copy, scrape, or redistribute church content in ways that violate applicable rights.",
     ],
   },
   {
-    title: "Content and Availability",
+    title: "Donations and Giving",
     paragraphs: [
-      "We try to keep schedules, event details, and Bible content accurate, but details may change. Please confirm time-sensitive ministry information with the church when needed.",
-      "The app is provided on an as-is and as-available basis, without a guarantee that every feature will always be uninterrupted or error-free.",
+      "If you choose to give, the app may direct you to third-party payment providers (such as PayPal, Cash App, or Zelle) to complete your donation.",
+      "Any payment is handled entirely by that provider under its own terms and privacy practices. FICCC does not process or store your payment details through the app, and we are not responsible for those external platforms.",
     ],
   },
   {
-    title: "Third-Party Services",
+    title: "Third-Party Services and Links",
     paragraphs: [
-      "When you open directions, add an event to your calendar, share content, or visit external links, you may leave the app and use services controlled by third parties.",
-      "Those services have their own terms, privacy practices, and availability, and FICCC is not responsible for how they operate.",
+      "Some features rely on services controlled by others. Watching a video opens a YouTube player, getting directions opens a maps app, adding an event opens your calendar, and emailing or visiting our website opens those external apps.",
+      "When you use these features you may leave the app. Those services have their own terms, privacy practices, and availability, and FICCC is not responsible for how they operate.",
+    ],
+  },
+  {
+    title: "Content Accuracy and Availability",
+    paragraphs: [
+      "We try to keep announcements, schedules, and event details accurate, but information may change. Please confirm time-sensitive ministry details with the church when needed.",
+      "The app is provided on an as-is and as-available basis. We do not guarantee that every feature will always be uninterrupted, timely, secure, or error-free, and we may add, change, or remove features at any time.",
     ],
   },
   {
     title: "Intellectual Property",
     paragraphs: [
-      "Church branding, app content, graphics, and ministry materials made available through the app remain the property of FICCC or their respective owners unless otherwise noted.",
+      "Church branding, app content, graphics, and ministry materials made available through the app remain the property of FICCC or their respective owners unless otherwise noted, and may not be used without permission.",
+    ],
+  },
+  {
+    title: "Disclaimers and Limitation of Liability",
+    paragraphs: [
+      "To the fullest extent permitted by law, FICCC and its volunteers are not liable for any indirect, incidental, or consequential damages arising from your use of, or inability to use, the app or any third-party service reached through it.",
     ],
   },
   {
     title: "Changes to These Terms",
     paragraphs: [
-      "We may update these terms from time to time. Continued use of the app after updates are posted means you accept the revised terms.",
+      "We may update these terms from time to time. When we do, we will update the date shown in the app. Continued use of the app after updates are posted means you accept the revised terms.",
     ],
   },
   {
@@ -126,47 +151,65 @@ export const PRIVACY_BLOCKS: PolicyBlock[] = [
   {
     title: "Overview",
     paragraphs: [
-      "This Privacy Policy explains how information is handled when you use the FICCC app.",
-      "As of April 23, 2026, the app does not require user account creation or in-app profile setup.",
+      "This Privacy Policy explains how information is handled when you use the FICCC app, provided by First Ithaca Chinese Christian Church.",
+      "We designed the app to need as little information as possible. It does not require an account, a profile, or any sign-in, and we do not ask you to provide personal information to use it.",
     ],
   },
   {
-    title: "Information We Receive",
+    title: "Information We Do Not Collect",
     paragraphs: [
-      "The app retrieves church content such as events and Bible data from connected services so it can display that information on your device.",
-      "Basic technical information may also be processed by the platform, your device, or hosting providers as part of normal app and network operation.",
+      "We do not collect, store, sell, or share personal information about you. In particular:",
+    ],
+    bullets: [
+      "No names, email addresses, phone numbers, or passwords are collected by the app.",
+      "There are no user accounts, so we hold no profile or login data.",
+      "We do not use advertising, third-party analytics, or tracking technologies to profile you.",
+      "We do not access your contacts, photos, or microphone.",
     ],
   },
   {
-    title: "Location, Maps, and Directions",
+    title: "Information Used to Operate the App",
     paragraphs: [
-      "When you open an event page, the app may convert the event address into map coordinates so it can display the event location.",
-      "The app does not track or store your live location for this feature. If you open a maps app for directions, that app's privacy policy will apply.",
+      "To show announcements, events, and videos, the app requests this content from church-operated servers. These requests are read-only — the app downloads content to display, and does not send personal information about you with them.",
+      "As with any app, your device and network providers may process basic technical information (such as your device type, app version, or IP address) to deliver these requests. This is standard internet operation and is not used by us to identify you.",
     ],
   },
   {
-    title: "Sharing and Calendar Actions",
+    title: "Addresses, Maps, and Directions",
     paragraphs: [
-      "If you choose to share an event or open a calendar app, the selected content is passed to your device's share sheet or calendar provider at your request.",
-      "Those actions are user-initiated and are governed in part by the apps and services you choose to use.",
+      "When you open an event, the app converts that event's street address into map coordinates so it can show the location on a map. This uses the event address only — it does not read, track, or store your device's GPS or live location.",
+      "If you tap to get directions, the app opens your device's maps app with the event location. From that point, the maps app operates under its own privacy policy.",
     ],
   },
   {
-    title: "Contact and External Links",
+    title: "Sharing, Calendar, and Donations",
     paragraphs: [
-      "If you email the church, open the church website, or use other external links, your information will be handled by those outside services according to their own policies.",
+      "If you share an event, the content is passed to your device's standard share sheet at your request. If you add an event to your calendar, the app opens your calendar app with the event details prefilled.",
+      "If you choose to give, the app opens a third-party payment provider (such as PayPal, Cash App, or Zelle). These actions are user-initiated, and any information you enter is handled by those apps and services under their own policies — not by us.",
+    ],
+  },
+  {
+    title: "Videos and External Links",
+    paragraphs: [
+      "Videos play through an embedded YouTube player, and links such as the church website or email open in their respective apps. These third-party services may collect information under their own privacy policies when you use them.",
+    ],
+  },
+  {
+    title: "Children's Privacy",
+    paragraphs: [
+      "The app is intended for the general church community and is not directed at children for the purpose of collecting data. Because the app collects no personal information from anyone, it collects none from children.",
     ],
   },
   {
     title: "Data Security",
     paragraphs: [
-      "We aim to use reasonable safeguards for connected services, but no internet-based system can be guaranteed completely secure.",
+      "We aim to use reasonable safeguards for the church content the app retrieves. However, because the app stores no personal data about you, there is no personal account information for us to lose. No internet-based system can be guaranteed completely secure.",
     ],
   },
   {
     title: "Your Choices",
     paragraphs: [
-      "You can stop using the app at any time. You can also choose not to use optional features such as email, maps, sharing, or calendar links.",
+      "You can stop using the app at any time. You can also choose not to use optional features such as maps, directions, sharing, calendar, email, or giving links. Your device settings let you manage permissions for the apps these features open.",
     ],
   },
   {
