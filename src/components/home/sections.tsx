@@ -62,7 +62,21 @@ export const SECTIONS: Section[] = [
     title: "Worship Services",
     subtitle: "Come join us for worship every Sunday",
     image: IMAGES.sermon,
-    detail: "The weekly gathering of our church - a time of worship through music and hearing God's word. The English service meets at 9:40am and the Chinese service meets at 11:00am.",
+    detail: (
+      <Text style={paragraph}>
+        The weekly gathering of our church - a time of worship through music and
+        hearing God's word. The English service meets at 9:40am and the Chinese
+        service meets at 11:00am. You can watch our sermons on the Media tab or
+        on our{" "}
+        <Text
+          style={link}
+          onPress={() => Linking.openURL("https://www.youtube.com/@FICCCenglish")}
+        >
+          YouTube channel
+        </Text>
+        .
+      </Text>
+    ),
   },
   {
     id: "discipleship",
@@ -104,13 +118,6 @@ export const SECTIONS: Section[] = [
     image: IMAGES.give,
     detail:
       "Donations are accepted through PayPal using the link below. We encourage all Christians to give to their local church, but we do not require nor encourage non-Christians to donate to the church.",
-  },
-  {
-    id: "newsletter",
-    title: "Weekly Newsletter",
-    subtitle: "Coming soon",
-    image: IMAGES.newsletter,
-    detail: "Coming soon",
   },
   {
     id: "leaders",
