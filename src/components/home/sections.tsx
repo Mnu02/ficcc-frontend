@@ -13,6 +13,8 @@ export type Section = {
   subtitle: string;
   image?: ImageSourcePropType;
   detail?: React.ReactNode;
+  // When set, the home card navigates here instead of /section/[id].
+  href?: string;
 };
 
 const IMAGES = {
@@ -138,9 +140,9 @@ export const SECTIONS: Section[] = [
   {
     id: "announcements",
     title: "Announcements",
-    subtitle: "Coming soon",
+    subtitle: "Stay up to date with FICCC",
     image: IMAGES.announcements,
-    detail: "Coming soon",
+    href: "/announcements",
   },
 ];
 

@@ -9,6 +9,7 @@ type HomeCardProps = {
   title: string;
   subtitle: string;
   image?: ImageSourcePropType;
+  href?: string;
 };
 
 const HomeCard = memo(function HomeCard({
@@ -16,9 +17,10 @@ const HomeCard = memo(function HomeCard({
   title,
   subtitle,
   image,
+  href,
 }: HomeCardProps) {
   return (
-    <Link href={`/section/${id}`} asChild>
+    <Link href={href ?? `/section/${id}`} asChild>
       <Pressable
         style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
       >

@@ -34,6 +34,7 @@ export default function HomeScreen() {
                 title={item.title}
                 subtitle={item.subtitle}
                 image={item.image}
+                href={item.href}
               />
             </View>
           ))}
