@@ -16,7 +16,7 @@ const EventDetailsScreen = () => {
     const { id } = useLocalSearchParams();
     const eventId = Array.isArray(id) ? id[0] : id;
     const { events, loading, error } = useEvents();
-    const event = events.find((e) => e.id === eventId);
+    const event = events.find((e) => String(e.id) === String(eventId));
 
     const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null);
     const [geocoding, setGeocoding] = useState(true);

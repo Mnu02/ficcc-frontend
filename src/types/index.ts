@@ -1,13 +1,13 @@
 export interface Announcement {
   id: number;
-  created_at: string;
   title: string;
-  body_html: string;
-  image_url: string | null;
+  description: string;
+  flyer_url: string | null;
+  stop_displaying_at: string | null;
 }
 
 export interface Event {
-  id: string;
+  id: number;
   name: string;
   location: string;
   image_url: string | null;

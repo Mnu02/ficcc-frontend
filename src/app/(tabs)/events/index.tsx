@@ -26,7 +26,7 @@ export default function EventsScreen() {
     <View style={{ flex: 1 }}>
       <FlatList
         data={events.filter((e) => new Date(e.starts_at) >= new Date())}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => <EventListItem event={item} />}
         contentContainerStyle={{ gap: 10, padding: 10 }}
       />
