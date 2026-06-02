@@ -1,6 +1,10 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, Linking } from "react-native";
 import type { ImageSourcePropType } from "react-native";
+
+// Matches the plain-string detail styling on the section page.
+const paragraph = { fontSize: 16, lineHeight: 23 } as const;
+const link = { color: "#007AFF", textDecorationLine: "underline" } as const;
 
 export type Section = {
   id: string;
@@ -14,9 +18,11 @@ const IMAGES = {
   discipleship: require("@/assets/discipleship.png"),
   give: require("@/assets/Give.png"),
   sermon: require("@/assets/sermons.png"),
-  leaders: require("@/assets/leaders.png"),
+  leaders: require("@/assets/zhida-ngun.png"),
   newsletter: require("@/assets/newsletters.png"),
   announcements: require("@/assets/Announcements.png"),
+  mid_week_bible_study: require("@/assets/midweek-bible-study.png"),
+  youth: require("@/assets/youth_group.png"),
 };
 
 const bioStyle = { fontSize: 16, lineHeight: 22 } as const;
@@ -56,14 +62,40 @@ export const SECTIONS: Section[] = [
     title: "Worship Services",
     subtitle: "Come join us for worship every Sunday",
     image: IMAGES.sermon,
-    detail: "Coming soon",
+    detail: "The weekly gathering of our church - a time of worship through music and hearing God's word. The English service meets at 9:40am and the Chinese service meets at 11:00am.",
   },
   {
     id: "discipleship",
     title: "Discipleship Group",
     subtitle: "Sundays at 11:00am",
     image: IMAGES.discipleship,
-    detail: "Coming soon",
+    detail: "Go deeper in God's word through discipleship groups - a time of discussion, accountability, and prayer!",
+  },
+  {
+    id: "mid_week_bible_study",
+    title: "Mid-Week Bible Study",
+    subtitle: "Thursdays at 7:00pm",
+    image: IMAGES.mid_week_bible_study,
+    detail: (
+      <Text style={paragraph}>
+        Our Midweek Bible Study is a home group for undergrad, grad, and local
+        residents. All are welcome - please{" "}
+        <Text
+          style={link}
+          onPress={() => Linking.openURL("mailto:em.ficcc@gmail.com")}
+        >
+          contact us
+        </Text>{" "}
+        for the location.
+      </Text>
+    ),
+  },
+  {
+    id: "youth",
+    title: "Youth Group",
+    subtitle: "Fridays at 7:30pm",
+    image: IMAGES.youth,
+    detail: "Join our group of middle and high school students for a time of Bible study, games, singing, and fun!",
   },
   {
     id: "give",
@@ -83,7 +115,7 @@ export const SECTIONS: Section[] = [
   {
     id: "leaders",
     title: "Church Leaders",
-    subtitle: "Coming soon",
+    subtitle: "Meet our humble servants",
     image: IMAGES.leaders,
     detail: LeaderBio,
   },
