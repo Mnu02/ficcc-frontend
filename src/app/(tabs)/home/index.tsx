@@ -72,107 +72,97 @@ const HomeCard = memo(function HomeCard({ title, subtitle, image, onPress }: Hom
 });
 
 export default function HomeScreen() {
-  const [openSection, setOpenSection] = useState<Section | null>(null);
   return (
     <View style={styles.screen}>
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator
+        showsVerticalScrollIndicator={false}
       >
         {/* Header */}
         <Text style={styles.header}>Welcome</Text>
+        <Text style={styles.subheader}>We're glad you're here</Text>
 
-        {/* Main Tab */}
-        <View style={styles.mainTab}>
-          <Text style={styles.mainTabText}>
-            To develop humble servants who will love the Lord, the lost and the
+        {/* Mission */}
+        <View style={styles.mission}>
+          <Text style={styles.missionText}>
+            Our mission is to develop humble servants who will love the Lord, the lost and the
             local church for the rest of their lives.
           </Text>
         </View>
 
         {/* Sections */}
+        <Text style={styles.sectionLabel}>Explore</Text>
         <View style={styles.grid}>
           {SECTIONS.map((item) => (
-            <HomeCard
-              key={item.title}
-              title={item.title}
-              subtitle={item.subtitle}
-              image={item.image}
-              onPress={() => setOpenSection(item)}
-            />
+            <View key={item.id} style={styles.cardWrapper}>
+              <HomeCard
+                id={item.id}
+                title={item.title}
+                subtitle={item.subtitle}
+                image={item.image}
+                href={item.href}
+              />
+            </View>
           ))}
         </View>
       </ScrollView>
-     <SectionModal
-  visible={!!openSection}
-  title={openSection?.modalTitle ?? openSection?.title ?? ""}
-  onClose={() => setOpenSection(null)}
->
-  {openSection?.modalContent}
-</SectionModal>
     </View>
-    
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-
   scroll: { flex: 1 },
-  scrollContent: { padding: 14, paddingBottom: 40 },
+  scrollContent: { padding: 16, paddingBottom: 40 },
 
-  header: { fontSize: 28, fontWeight: "700", marginBottom: 9 },
-
-  mainTab: {
-    padding: 60,
-    borderColor: "tan",
-    borderRadius: 12,
-    borderWidth: 2,
-    marginBottom: 30,
+  header: {
+    fontSize: 30,
+    fontWeight: "800",
+    color: Colors.text,
   },
-  mainTabText: { fontSize: 18, fontWeight: "600", color: "saddlebrown" },
+  subheader: {
+    fontSize: 14,
+    color: Colors.textSecondary,
+    marginTop: 2,
+    marginBottom: 20,
+  },
+
+  mission: {
+    flexDirection: "row",
+    backgroundColor: Colors.accentSoft,
+    borderRadius: 14,
+    padding: 18,
+    marginBottom: 28,
+  },
+  missionBar: {
+    width: 4,
+    borderRadius: 2,
+    backgroundColor: Colors.accent,
+    marginRight: 14,
+  },
+  missionText: {
+    flex: 1,
+    fontSize: 16,
+    lineHeight: 23,
+    fontWeight: "600",
+    color: Colors.accentText,
+  },
+
+  sectionLabel: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: Colors.text,
+    marginBottom: 14,
+  },
 
   grid: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-},
-
-imageFrame: {
-  height: 200,
-  width: "100%",
-  borderRadius: 12,
-  borderColor: "tan",
-  borderWidth: 1,
-  overflow: "hidden",
-  position: "relative",
-},
-
-cardImage: {
-  height: "100%",
-  width: "100%",
-},
-
-backgroundImage: {
-  ...StyleSheet.absoluteFillObject,
-  resizeMode: "cover",
-},
-card: {
-  flexBasis: "48%",
-  marginBottom: 30,
-},
-  cardImagePlaceholder: {
-    height: 200,
-    borderRadius: 12,
-    borderColor: "tan",
-    borderWidth: 2,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
-  cardTitle: {
-    marginTop: 10,
-    textAlign: "left",
-    fontSize: 18,
-    fontWeight: "600",
+  cardWrapper: {
+    width: "48%",
+    marginBottom: 24,
   },
-  cardSubtitle: { textAlign: "left", marginTop: 6, opacity: 0.8 },
 });
